@@ -5,7 +5,9 @@ let string = ' ';
 let arr = Array.from(buttons);
 
 arr.forEach(buttons => {
+    
     buttons.addEventListener('click',(e) => {
+    
         if(e.target.innerHTML == '='){
             string = eval(string);
             input.value = string;
