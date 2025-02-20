@@ -1,70 +1,225 @@
-*{
+General Reset and Font Setup
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins' , sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
-body{
+:root {
+    --primary-bg-dark: linear-gradient(45deg, rgb(10, 10, 10), rgb(58, 65, 82));
+    --primary-bg-light: linear-gradient(45deg, rgb(255, 255, 255), rgb(232, 232, 232));
+    --calculator-bg-dark: rgba(0, 0, 0, 0.7); 
+    --calculator-bg-light: rgba(255, 255, 255, 0.7); 
+    --button-bg-dark: rgba(0, 0, 0, 0.5); 
+    --button-bg-light: rgba(255, 255, 255, 0.5);
+    --button-hover-dark: rgba(0, 255, 255, 0.4); 
+    --button-hover-light: rgba(0, 0, 0, 0.2);
+    --input-bg-dark: rgba(0, 0, 0, 0.2); 
+    --input-bg-light: rgba(255, 255, 255, 0.2); 
+    --font-color-dark: white;
+    --font-color-light: black;
+}
+
+body {
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(45deg, rgb(10, 10, 10) , rgb(58, 65, 82));
+    background: var(--primary-bg-dark);
+    color: var(--font-color-dark); 
+    transition: background 0.5s, color 0.5s;
 }
 
-.calculator{
-    border: 1px solid rgb(113, 115, 119);
+body.light-mode {
+    background: var(--primary-bg-light);
+    color: var(--font-color-light);
+}
+
+.calculator {
+    border: 1px solid rgba(113, 115, 119, 0.4);
     padding: 20px;
-    border-radius: 16px;
-    background: transparent;
-    box-shadow: 0px 3px 15px rgba(133, 115, 119, 0.5);
+    border-radius: 20px;
+    background: var(--calculator-bg-dark); 
+    box-shadow: 0px 3px 20px rgba(133, 115, 119, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    transition: background 0.5s, box-shadow 0.5s;
 }
 
-input{
-    width: 320px;
+
+body.light-mode .calculator {
+    background: var(--calculator-bg-light); 
+}
+
+input {
+    width: 100%;
     border: none;
-    padding: 24px;
-    margin: 10px;
-    background: transparent;
-    box-shadow: 0px 3px 15px rgba(84, 84, 84, 0.1);
-    box-sizing: 40px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: var(--input-bg-dark);
+    box-shadow: 0px 3px 15px rgba(84, 84, 84, 0.2);
+    color: white;
+    font-size: 32px;
     text-align: right;
     cursor: pointer;
-    color: white;
+    border-radius: 10px;
+    transition: background 0.5s;
 }
 
-input::placeholder{
-    color: white;
+body.light-mode input {
+    background: var(--input-bg-light); 
+    color: black; 
 }
 
-button{
+button {
     border: none;
     width: 60px;
     height: 60px;
     margin: 10px;
     border-radius: 50%;
-    background: transparent;
+    background: var(--button-bg-dark);
     color: white;
-    font-size: 20px;
-    box-shadow: -8px -8px 15px rgba(255, 255, 259, 0.1);
+    font-size: 24px;
+    transition: all 0.2s ease;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
     cursor: pointer;
-    
 }
 
-button:hover{
+body.light-mode button {
+    background: var(--button-bg-light); 
+    color: black;
+}
+
+button:hover {
     transform: scale(1.1);
-    font-size: 150%;
+    font-size: 120%;
     color: lightblue;
     border: 2px solid lightblue;
+    box-shadow: 0px 8px 20px rgba(0, 255, 255, 0.4);
 }
 
-.op{
+body.light-mode button:hover {
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: scale(1);
+    box-shadow: none;
+}
+
+button.op {
+    background: rgba(0, 255, 255, 0.2);
     color: aqua;
 }
 
-.owner{
+body.light-mode button.op {
+    background: rgba(0, 255, 255, 0.2);
+    color: darkblue;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.theme-toggle-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #333;
     color: white;
-    font-size: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+    background-color: #555;
+}
+
+.theme-toggle-btn:focus {
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .calculator {
+        max-width: 320px;
+        padding: 15px;
+    }
+
+    input {
+        font-size: 28px;
+        padding: 18px;
+    }
+
+    button {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    button:hover {
+        font-size: 110%;
+    }
+}
+
+@media (max-width: 480px) {
+    .calculator {
+        max-width: 280px;
+        padding: 10px;
+    }
+
+    input {
+        font-size: 24px;
+        padding: 16px;
+    }
+
+    button {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+
+    button:hover {
+        font-size: 105%;
+    }
+}
+
+@media (max-width: 360px) {
+    .calculator {
+        max-width: 250px;
+        padding: 8px;
+    }
+
+    input {
+        font-size: 22px;
+        padding: 14px;
+    }
+
+    button {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    button:hover {
+        font-size: 100%;
+    }
 }
